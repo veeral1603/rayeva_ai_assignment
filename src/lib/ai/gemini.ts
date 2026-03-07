@@ -1,7 +1,10 @@
 import ai from "./geminiClient";
 import { buildCategoryAndTagsPrompt } from "./prompt";
 
-async function generateCategoriesAndTags(title: string, description: string) {
+async function generateCategoriesAndTagsFromGemini(
+  title: string,
+  description: string,
+) {
   const prompt = buildCategoryAndTagsPrompt(title, description);
   const response = await ai.models.generateContent({
     model: "gemini-2.5-flash",
@@ -17,7 +20,7 @@ async function generateCategoriesAndTags(title: string, description: string) {
 }
 
 const gemini = {
-  generateCategoriesAndTags,
+  generateCategoriesAndTagsFromGemini,
 };
 
 export default gemini;

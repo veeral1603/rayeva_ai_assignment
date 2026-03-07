@@ -1,4 +1,4 @@
-import CategoryGeneratorForm from "@/components/CategoryGeneratorForm";
+import CategoryGeneratorForm from "@/components/category-generator/CategoryGeneratorForm";
 import PageTitle from "@/components/PageTitle";
 import { Metadata } from "next";
 import Link from "next/link";

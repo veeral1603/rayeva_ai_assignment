@@ -1,24 +1,30 @@
 "use client";
 import React from "react";
 import { useForm } from "react-hook-form";
-import InputContainer from "./InputContainer";
-import Button from "./Button";
+import InputContainer from "../InputContainer";
+import Button from "../Button";
 import categoryFormSchema, {
   CategoryFormValues,
 } from "@/lib/validators/categoryFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Spinner } from "./ui/spinner";
+import { Spinner } from "../ui/spinner";
 import { useMutation } from "@tanstack/react-query";
 import { generateCategoriesAndTags } from "@/services/categories.service";
+import { useCategoryAndTagsStore } from "@/stores/categoryAndTagsStore";
+import { categoryAndTagsResponse } from "@/types";
+import CategoryGeneratorInputPresets from "./CategoryGeneratorInputPresets";
 
 export default function CategoryGeneratorForm() {
   const [loading, setLoading] = React.useState(false);
+  const { setAiData } = useCategoryAndTagsStore();
 
   const mutation = useMutation({
     mutationFn: (data: CategoryFormValues) => generateCategoriesAndTags(data),
-    onSuccess: () => {
-      setLoading(false);
+    onSuccess: (data: categoryAndTagsResponse) => {
+      setAiData(data);
       form.reset();
+
+      setLoading(false);
     },
     onError: () => {
       setLoading(false);
@@ -68,6 +74,10 @@ export default function CategoryGeneratorForm() {
           {!loading && <p>Generate</p>}
         </Button>
       </form>
+
+      <div className="mt-6">
+        <CategoryGeneratorInputPresets setValue={form.setValue} />
+      </div>
     </div>
   );
 }
