@@ -5,7 +5,7 @@ const categoryFormSchema = z.object({
   description: z
     .string()
     .min(1, "Description is required")
-    .max(500, "Description must be less than 500 characters"),
+    .max(200, "Description must be less than 200 characters"),
 });
 
 export type CategoryFormValues = z.infer<typeof categoryFormSchema>;

@@ -41,7 +41,7 @@ export default function CategoryGeneratorForm() {
         >
           <textarea
             placeholder="Enter your product description"
-            className="flex-1 w-full h-32"
+            className="flex-1 w-full h-32 resize-none"
             {...form.register("description")}
           />
         </InputContainer>
