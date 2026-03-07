@@ -7,14 +7,31 @@ import categoryFormSchema, {
   CategoryFormValues,
 } from "@/lib/validators/categoryFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Spinner } from "./ui/spinner";
+import { useMutation } from "@tanstack/react-query";
+import { generateCategoriesAndTags } from "@/services/categories.service";
 
 export default function CategoryGeneratorForm() {
+  const [loading, setLoading] = React.useState(false);
+
+  const mutation = useMutation({
+    mutationFn: (data: CategoryFormValues) => generateCategoriesAndTags(data),
+    onSuccess: () => {
+      setLoading(false);
+      form.reset();
+    },
+    onError: () => {
+      setLoading(false);
+    },
+  });
+
   const form = useForm<CategoryFormValues>({
     resolver: zodResolver(categoryFormSchema),
   });
 
   const onSubmit = (data: CategoryFormValues) => {
-    console.log(data);
+    setLoading(true);
+    mutation.mutate(data);
   };
 
   return (
@@ -46,7 +63,10 @@ export default function CategoryGeneratorForm() {
           />
         </InputContainer>
 
-        <Button type="submit">Generate Tags</Button>
+        <Button type="submit">
+          {loading && <Spinner className="size-5" />}
+          {!loading && <p>Generate</p>}
+        </Button>
       </form>
     </div>
   );

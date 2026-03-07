@@ -1,5 +1,5 @@
-import { generateCategoriesAndTags } from "@/lib/ai/gemini";
 import categoryFormSchema from "@/lib/validators/categoryFormSchema";
+import { generateCategoriesAndTags } from "@/modules/ai/ai.service";
 import parseSchema from "@/utils/schemaParser";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -9,15 +9,7 @@ export async function POST(request: NextRequest) {
 
     const validatedBody = parseSchema(categoryFormSchema, body);
 
-    // const response = await generateCategoriesAndTags(
-    //   validatedBody.title,
-    //   validatedBody.description,
-    // );
-
-    const response = {
-      categories: ["Category 1", "Category 2", "Category 3"],
-      tags: ["Tag 1", "Tag 2", "Tag 3", "Tag 4", "Tag 5"],
-    };
+    const response = await generateCategoriesAndTags(validatedBody);
 
     return NextResponse.json(
       {
