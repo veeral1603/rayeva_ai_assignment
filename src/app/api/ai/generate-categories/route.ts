@@ -1,5 +1,6 @@
 import categoryFormSchema from "@/lib/validators/categoryFormSchema";
 import { generateProductCategoriesAndTags } from "@/modules/ai/ai.service";
+import { createLog } from "@/modules/logs/log.service";
 import { createProduct } from "@/modules/products/product.service";
 import parseSchema from "@/utils/schemaParser";
 import { NextRequest, NextResponse } from "next/server";
@@ -10,9 +11,12 @@ export async function POST(request: NextRequest) {
 
     const validatedBody = parseSchema(categoryFormSchema, body);
 
-    const response = await generateProductCategoriesAndTags(validatedBody);
+    const { response, prompt } =
+      await generateProductCategoriesAndTags(validatedBody);
 
-    await createProduct(validatedBody, response);
+    const product = await createProduct(validatedBody, response);
+
+    await createLog(prompt, response, product.id);
 
     return NextResponse.json(
       {

@@ -25,8 +25,14 @@ model AILog {
   prompt   String
   response String
 
+  module Module
+
   productId String
   product   Product @relation(fields: [productId], references: [id])
 
   createdAt DateTime @default(now())
+}
+
+enum Module {
+  CATEGORY_AND_TAG_GENERATION
 }
