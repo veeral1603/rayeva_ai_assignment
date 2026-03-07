@@ -21,6 +21,7 @@ export default function CategoryGeneratorForm() {
   const mutation = useMutation({
     mutationFn: (data: CategoryFormValues) => generateCategoriesAndTags(data),
     onSuccess: (data: categoryAndTagsResponse) => {
+      console.log("API Response:", data);
       setAiData(data);
       form.reset();
 

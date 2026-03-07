@@ -1,4 +1,5 @@
 import CategoryGeneratorForm from "@/components/category-generator/CategoryGeneratorForm";
+import CategoryTabs from "@/components/category-generator/CategoryTabs";
 import PageTitle from "@/components/PageTitle";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -17,7 +18,7 @@ export default function page() {
         <CategoryGeneratorForm />
       </div>
       <div className="h-full w-full p-4 flex items-center justify-center">
-        b
+        <CategoryTabs />
       </div>
 
       <Link

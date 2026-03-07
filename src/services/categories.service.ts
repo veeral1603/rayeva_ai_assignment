@@ -6,5 +6,5 @@ export const generateCategoriesAndTags = async (
   data: CategoryFormValues,
 ): Promise<categoryAndTagsResponse> => {
   const response = await axiosInstance.post("/ai/generate-categories", data);
-  return response.data;
+  return response.data.data;
 };
