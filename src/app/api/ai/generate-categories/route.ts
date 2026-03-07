@@ -1,5 +1,6 @@
 import categoryFormSchema from "@/lib/validators/categoryFormSchema";
 import { generateProductCategoriesAndTags } from "@/modules/ai/ai.service";
+import { createProduct } from "@/modules/products/product.service";
 import parseSchema from "@/utils/schemaParser";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -11,6 +12,8 @@ export async function POST(request: NextRequest) {
 
     const response = await generateProductCategoriesAndTags(validatedBody);
 
+    await createProduct(validatedBody, response);
+
     return NextResponse.json(
       {
         success: true,
@@ -20,6 +23,7 @@ export async function POST(request: NextRequest) {
       { status: 201 },
     );
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       {
         success: false,

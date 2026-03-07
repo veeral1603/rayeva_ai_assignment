@@ -25,6 +25,7 @@ export function buildCategoryAndTagsPrompt(title: string, description: string) {
 
     Rules:
     Choose ONE primary category from the above list only.
+    Suggest one relevant sub-category that best fits the product.
     Generate 5-10 valid SEO Tags.
     Filters must be from the above list.
     Output must be Valid raw JSON no escape characters and no markdown.
