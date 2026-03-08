@@ -17,6 +17,9 @@ export default function DeleteProductButton({ productId, large }: Props) {
     mutationFn: () => deleteProduct(productId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["products"] });
+      queryClient.invalidateQueries({
+        queryKey: ["aiLogs", "categoriesAndTags"],
+      });
       setIsLoading(false);
     },
     onMutate: () => {

@@ -21,6 +21,7 @@ export async function createLog(
 export async function getAllCategoryAndTagLogs() {
   const logs = await prisma.aILog.findMany({
     where: { module: "CATEGORY_AND_TAG_GENERATION" },
+    include: { product: true },
     orderBy: { createdAt: "desc" },
   });
 

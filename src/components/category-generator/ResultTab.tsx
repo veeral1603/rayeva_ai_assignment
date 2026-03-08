@@ -10,7 +10,7 @@ export default function ResultTab() {
 
   return (
     <div className="h-130 w-full flex flex-col gap-6">
-      <JSONOutputContainer />
+      <JSONOutputContainer jsonData={aiData as JSON | null} />
       {aiData && (
         <Button className="w-max" onClick={clearAiData}>
           <X size={16} /> <p>Clear Result</p>

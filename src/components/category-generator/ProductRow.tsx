@@ -15,7 +15,7 @@ export default function ProductRow({ product }: Props) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <TableRow key={product.id} className="cursor-pointer">
+        <TableRow className="cursor-pointer">
           <TableCell className="font-medium truncate w-30">
             {product.title.length > 20
               ? product.title.slice(0, 20) + "..."

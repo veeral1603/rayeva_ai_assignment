@@ -26,3 +26,21 @@ export function formatTimeAgo(date: Date | string) {
 
   return "just now";
 }
+
+export function formatDateTime(dateInput: string | Date) {
+  const date = new Date(dateInput);
+
+  const day = date.getDate().toString().padStart(2, "0");
+
+  const month = date.toLocaleString("en-IN", {
+    month: "short",
+  });
+
+  const time = date.toLocaleString("en-IN", {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  });
+
+  return `${day} ${month}, ${time}`;
+}

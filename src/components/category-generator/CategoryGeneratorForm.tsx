@@ -23,6 +23,9 @@ export default function CategoryGeneratorForm() {
     mutationFn: (data: CategoryFormValues) => generateCategoriesAndTags(data),
     onSuccess: (data: categoryAndTagsResponse) => {
       queryClient.refetchQueries({ queryKey: ["products"] });
+      queryClient.invalidateQueries({
+        queryKey: ["aiLogs", "categoriesAndTags"],
+      });
       setAiData(data);
       form.reset();
 

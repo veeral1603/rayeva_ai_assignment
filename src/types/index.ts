@@ -15,3 +15,16 @@ export type ProductType = {
   sustainabilityFilters: string[];
   createdAt?: Date;
 };
+
+export type AiLogType = {
+  id?: string;
+  prompt: string;
+  response: string;
+
+  module: "CATEGORY_AND_TAG_GENERATION";
+
+  productId: string;
+  product?: ProductType;
+
+  createdAt: Date;
+};
