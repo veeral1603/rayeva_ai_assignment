@@ -8,7 +8,7 @@ import categoryFormSchema, {
 } from "@/lib/validators/categoryFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Spinner } from "../ui/spinner";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { generateCategoriesAndTags } from "@/services/categories.service";
 import { useCategoryAndTagsStore } from "@/stores/categoryAndTagsStore";
 import { categoryAndTagsResponse } from "@/types";
@@ -17,11 +17,12 @@ import CategoryGeneratorInputPresets from "./CategoryGeneratorInputPresets";
 export default function CategoryGeneratorForm() {
   const [loading, setLoading] = React.useState(false);
   const { setAiData } = useCategoryAndTagsStore();
+  const queryClient = useQueryClient();
 
   const mutation = useMutation({
     mutationFn: (data: CategoryFormValues) => generateCategoriesAndTags(data),
     onSuccess: (data: categoryAndTagsResponse) => {
-      console.log("API Response:", data);
+      queryClient.refetchQueries({ queryKey: ["products"] });
       setAiData(data);
       form.reset();
 

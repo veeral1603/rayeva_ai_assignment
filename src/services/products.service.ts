@@ -1,11 +1,11 @@
 import axiosInstance from "@/lib/axios";
 
 export const getAllProducts = async () => {
-  const response = await axiosInstance.get("/api/products");
+  const response = await axiosInstance.get("/products");
   return response.data.data;
 };
 
 export const deleteProduct = async (productId: string) => {
-  const response = await axiosInstance.delete(`/api/products/${productId}`);
+  const response = await axiosInstance.delete(`/products/${productId}`);
   return response.data;
 };

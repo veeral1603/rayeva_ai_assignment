@@ -1,7 +1,7 @@
 import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ResultTab from "./ResultTab";
-import HistoryTab from "./HistoryTab";
+import ProductsTab from "./ProductsTab";
 import AiLogsTab from "./AiLogsTab";
 
 export default function CategoryTabs() {
@@ -12,8 +12,8 @@ export default function CategoryTabs() {
           Result
         </TabsTrigger>
 
-        <TabsTrigger value="history" className="px-4 md:text-lg">
-          History
+        <TabsTrigger value="products" className="px-4 md:text-lg">
+          Products
         </TabsTrigger>
 
         <TabsTrigger value="ai_logs" className="px-4 md:text-lg">
@@ -25,8 +25,8 @@ export default function CategoryTabs() {
         <ResultTab />
       </TabsContent>
 
-      <TabsContent value="history">
-        <HistoryTab />
+      <TabsContent value="products">
+        <ProductsTab />
       </TabsContent>
 
       <TabsContent value="ai_logs">

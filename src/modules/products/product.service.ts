@@ -21,11 +21,17 @@ export async function createProduct(
 }
 
 export async function getAllProducts() {
-  const products = await prisma.product.findMany();
+  const products = await prisma.product.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
   return products;
 }
 
 export async function deleteProduct(productId: string) {
+  await prisma.aILog.deleteMany({ where: { productId } });
+
   const deletedProduct = await prisma.product.delete({
     where: { id: productId },
   });

@@ -6,6 +6,12 @@ export type categoryAndTagsResponse = {
 };
 
 export type ProductType = {
+  id?: string;
   title: string;
   description: string;
-} & categoryAndTagsResponse;
+  primaryCategory: string;
+  subCategory: string;
+  seoTags: string[];
+  sustainabilityFilters: string[];
+  createdAt?: Date;
+};
