@@ -1,5 +1,5 @@
 import axiosInstance from "@/lib/axios";
-import { CategoryFormValues } from "@/lib/validators/categoryFormSchema";
+import { CategoryFormValues } from "@/validators/categoryFormSchema";
 import { categoryAndTagsResponse } from "@/types";
 
 export const generateCategoriesAndTags = async (

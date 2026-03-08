@@ -24,7 +24,7 @@ export function buildCategoryAndTagsPrompt(title: string, description: string) {
     Product Description: ${description}
 
     Rules:
-    Choose ONE primary category from the above list only.
+    Choose ONE primary category from the above list only, and "Other" if none fit.
     Suggest one relevant sub-category that best fits the product.
     Generate 5-10 valid SEO Tags.
     Filters must be from the above list.

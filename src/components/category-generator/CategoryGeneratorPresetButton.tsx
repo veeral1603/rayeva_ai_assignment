@@ -1,4 +1,4 @@
-import { CategoryFormValues } from "@/lib/validators/categoryFormSchema";
+import { CategoryFormValues } from "@/validators/categoryFormSchema";
 import { X } from "lucide-react";
 import React from "react";
 import { UseFormSetValue } from "react-hook-form";

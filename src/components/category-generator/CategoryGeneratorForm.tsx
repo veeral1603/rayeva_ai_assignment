@@ -5,7 +5,7 @@ import InputContainer from "../InputContainer";
 import Button from "../Button";
 import categoryFormSchema, {
   CategoryFormValues,
-} from "@/lib/validators/categoryFormSchema";
+} from "@/validators/categoryFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Spinner } from "../ui/spinner";
 import { useMutation, useQueryClient } from "@tanstack/react-query";

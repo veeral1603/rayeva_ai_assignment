@@ -1,4 +1,4 @@
-import { CategoryFormValues } from "@/lib/validators/categoryFormSchema";
+import { CategoryFormValues } from "@/validators/categoryFormSchema";
 import React from "react";
 import type { UseFormSetValue } from "react-hook-form";
 import CategoryGeneratorPresetButton from "./CategoryGeneratorPresetButton";

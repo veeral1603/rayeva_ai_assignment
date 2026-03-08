@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Rayeva AI Assignment
 
-## Getting Started
+## Module 1 - AI Auto-Category & Tag Generator
 
-First, run the development server:
+This module automatically classifies a product and generates structured metadata using AI.
+Given a product title and description, the system calls the Gemini API to determine the most relevant product category, sub-category, SEO tags, and sustainability filters.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+The AI response is parsed into structured JSON and stored in the database along with the original prompt and response logs. This helps reduce manual catalog work and improves searchability for sustainable commerce platforms.
+
+### Prompt
+
 ```
+    Your task is to analyze a product's title and description and return structured classification.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+    Available Primary Categories: ${PREDEFINED_CATEGORIES.join(", ")}
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+    Available Sustainability Filters: ${PREDEFINED_SUSTAINABILITY_FILTERS.join(", ")}
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+    return only valid JSON data in the following format:
+    {
+    "primary_category": "",
+    "sub_category": "",
+    "seo_tags": [],
+    "sustainability_filters": []
+    }
 
-## Learn More
+    Product Title: ${title}
 
-To learn more about Next.js, take a look at the following resources:
+    Product Description: ${description}
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+    Rules:
+    Choose ONE primary category from the above list only, and "Other" if none fit.
+    Suggest one relevant sub-category that best fits the product.
+    Generate 5-10 valid SEO Tags.
+    Filters must be from the above list.
+    Output must be Valid raw JSON no escape characters and no markdown.
+```

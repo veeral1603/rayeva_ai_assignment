@@ -1,4 +1,4 @@
-import categoryFormSchema from "@/lib/validators/categoryFormSchema";
+import categoryFormSchema from "@/validators/categoryFormSchema";
 import { generateProductCategoriesAndTags } from "@/modules/ai/ai.service";
 import { createLog } from "@/modules/logs/log.service";
 import { createProduct } from "@/modules/products/product.service";

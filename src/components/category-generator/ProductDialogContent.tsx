@@ -54,7 +54,9 @@ export default function ProductDialogContent({ product }: Props) {
         <p className="font-semibold font-foreground">
           Sustainability Filters:{" "}
           <span className="font-normal text-muted-foreground">
-            {product.sustainabilityFilters.join(", ")}
+            {product.sustainabilityFilters.length === 0
+              ? "None"
+              : product.sustainabilityFilters.join(", ")}
           </span>
         </p>
 

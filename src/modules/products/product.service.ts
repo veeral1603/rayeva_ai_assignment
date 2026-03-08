@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import { CategoryFormValues } from "@/lib/validators/categoryFormSchema";
+import { CategoryFormValues } from "@/validators/categoryFormSchema";
 import { categoryAndTagsResponse } from "@/types";
 
 export async function createProduct(
